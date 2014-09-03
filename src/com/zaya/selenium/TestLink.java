@@ -1,4 +1,4 @@
-package com.zaya.selenium;
+/*package com.zaya.selenium;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,11 +39,11 @@ public class TestLink {
 		String mainWinId;
 		int status;
 		// loop over all the a elements in the page
-		/*List<WebElement> linkss = new ArrayList<WebElement>();
+		List<WebElement> linkss = new ArrayList<WebElement>();
     	linkss = driver.findElements(By.tagName("a"));
     	System.out.println(linkss.size());
     	for(WebElement link : linkss) 
-    		System.out.println(link.getText());*/
+    		System.out.println(link.getText());
 		try{
 			for(WebElement link : driver.findElements(By.tagName("a"))) {
 				// Check if link is displayed and not previously visited
@@ -51,28 +51,33 @@ public class TestLink {
 						&& !links.contains(link.getText())) {
 					// add link to list of links already visited
 					links.add(link.getText());
-					System.out.println(link.getText());
+					//System.out.println(link.getText());
 
 					mainWinId = driver.getWindowHandle();
-					//driver.switchTo().
-					saveOldHandles(driver); // here we use method to save all window id before click (the code I'll show further)
-					// click on the link. This opens a new page
+					saveOldHandles(driver); 
+					// click on the link. This may opens a new page
 					link.click(); 
-					status = getResponseCode(driver.getCurrentUrl());
-					linksWithStatus.put(link.getText(), status);
+					
 					//StatusCodes.getResponseCode(driver.getCurrentUrl());
-					saveNewHandles(driver); // here we save all window id after click (the code I'll show further)
+					saveNewHandles(driver); 
 
 					ifNewWindowOccursFocusOnIt(driver);
-					// call testLink on the new page
 					
-					new TestLink(driver).linkTest();
-					driver.switchTo().window(mainWinId);
+					//status = getResponseCode(driver.getCurrentUrl());
+					//linksWithStatus.put(link.getText(), status);
+					
+					for(WebElement link2 : driver.findElements(By.tagName("a"))) {
+						System.out.println(link2.getText());
+					}
+					//new TestLink(driver).linkTest();
+					System.out.println("going to main window:"+mainWinId);
+					if(!(driver.getWindowHandle().equals(mainWinId)))
+						driver.switchTo().window(mainWinId);
 				}
 			}
 			//driver.navigate().back();
 		}catch(StaleElementReferenceException e) {
-			System.out.println("OOPS!!");
+			e.printStackTrace();
 		}
 	}
 
@@ -130,8 +135,9 @@ public class TestLink {
 		driver.get("http://www.lufthansa.com/online/portal/lh/ua/homepage");
 		// start recursive linkText
 		new TestLink(driver).linkTest();
-		/*for(String str : links) {
+		for(String str : links) {
 			System.out.println(str);
-		}*/
+		}
 	}
 }
+*/
