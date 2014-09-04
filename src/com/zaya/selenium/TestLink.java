@@ -1,4 +1,4 @@
-/*package com.zaya.selenium;
+package com.zaya.selenium;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,11 +39,11 @@ public class TestLink {
 		String mainWinId;
 		int status;
 		// loop over all the a elements in the page
-		List<WebElement> linkss = new ArrayList<WebElement>();
+		/*List<WebElement> linkss = new ArrayList<WebElement>();
     	linkss = driver.findElements(By.tagName("a"));
     	System.out.println(linkss.size());
     	for(WebElement link : linkss) 
-    		System.out.println(link.getText());
+    		System.out.println(link.getText());*/
 		try{
 			for(WebElement link : driver.findElements(By.tagName("a"))) {
 				// Check if link is displayed and not previously visited
@@ -51,7 +51,7 @@ public class TestLink {
 						&& !links.contains(link.getText())) {
 					// add link to list of links already visited
 					links.add(link.getText());
-					//System.out.println(link.getText());
+					System.out.println(link.getAttribute("href"));
 
 					mainWinId = driver.getWindowHandle();
 					saveOldHandles(driver); 
@@ -135,9 +135,8 @@ public class TestLink {
 		driver.get("http://www.lufthansa.com/online/portal/lh/ua/homepage");
 		// start recursive linkText
 		new TestLink(driver).linkTest();
-		for(String str : links) {
+		/*for(String str : links) {
 			System.out.println(str);
-		}
+		}*/
 	}
 }
-*/

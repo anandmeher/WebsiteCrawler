@@ -33,7 +33,7 @@ public class StatusCodes {
 		List<WebElement> links = new ArrayList<WebElement>();
     	links = driver.findElements(By.tagName("a"));
     	System.out.println("Total Links: "+links.size());
-    	/*for(WebElement link : links) {
+    	for(WebElement link : links) {
     		if (link.isDisplayed() 
 					&& !links.contains(link.getText())) {
     			link.click();
@@ -42,12 +42,12 @@ public class StatusCodes {
     			status = getResponseCode("http://www.lufthansa.com/online/portal/lh/ua/homepag");
     			linksWithStatus.put(link.getText(), status);
     		}
-    		*/
+    		
     	status = getResponseCode("http://www.codesappers.byethost33.com");
-    	//}
+    	}
     		//System.out.println(link.getText());
     	//System.out.println(linksWithStatus.size());
-		System.out.println(status);
+		//System.out.println(status);
 	}
 	
 	 public static int getResponseCode(String url) {
