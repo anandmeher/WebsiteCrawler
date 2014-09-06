@@ -1,6 +1,9 @@
 package com.zaya.selenium;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +28,44 @@ public class StatusCodes {
 		// TODO Auto-generated method stub
 		WebDriver driver = new HtmlUnitDriver();
 		driver.get("http://www.lufthansa.com/online/portal/lh/ua/homepage");
-		new StatusCodes(driver).getHTTPResponseCodes();
+		String str = "http://www.lufthansa.com/asdfasdf";
+		String str1 = "http://ummyfoods.co.nr";
+	
+		try {
+			System.out.println(new StatusCodes(driver).getResponseCodes(str1));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//new StatusCodes(driver).getHTTPResponseCodes();
+		//System.out.println(new StatusCodes(driver).getResponseCode(str));
 	}
+	//working fine
+	public static int getResponseCode(String url) {
+		try {
+			WebClient client = new WebClient();
+			client.getOptions().setThrowExceptionOnScriptError(false);
+			client.getOptions().setThrowExceptionOnFailingStatusCode(false);
+			client.getOptions().setJavaScriptEnabled(false);
+			if(url != null)
+				return client.getPage(url).getWebResponse().getStatusCode();
+		} catch (IOException ioe) {
+			throw new RuntimeException(ioe);
+		}
+		return 0;
+	}
+	//working fine
+	public static int getResponseCodes(String urlString) throws MalformedURLException, IOException {
+	     URL u = new URL(urlString); 
+	     HttpURLConnection huc =  (HttpURLConnection)  u.openConnection(); 
+	     huc.setRequestMethod("GET"); 
+	     huc.connect(); 
+	     return huc.getResponseCode();
+	 }
 	
 	public void getHTTPResponseCodes() {
 		int status;
@@ -50,25 +89,13 @@ public class StatusCodes {
 		//System.out.println(status);
 	}
 	
-	 public static int getResponseCode(String url) {
-	        try {
-	            WebClient client = new WebClient();
-	           // webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
-	            client.getOptions().setThrowExceptionOnFailingStatusCode(false);
-	            if(url != null)
-	            return client.getPage(url).getWebResponse().getStatusCode();
-	        } catch (IOException ioe) {
-	            throw new RuntimeException(ioe);
-	        }
-			return 0;
-	    }
-/*	 public int getResponseCodeByHTMLClient(String url) {
+	 /*public int getResponseCodeByHTMLClient(String url) {
 	        try {
 	            return Request.Get(url).execute().returnResponse().getStatusLine()
 	                    .getStatusCode();
 	        } catch (Exception e) {
 	            throw new RuntimeException(e);
 	        }
-	    }*/
-
+	    }
+*/
 }

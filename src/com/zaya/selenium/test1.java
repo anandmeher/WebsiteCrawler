@@ -88,6 +88,7 @@ public class Test1 {
 			WebClient client = new WebClient();
 			client.getOptions().setThrowExceptionOnScriptError(false);
 			client.getOptions().setThrowExceptionOnFailingStatusCode(false);
+			client.getOptions().setJavaScriptEnabled(false);
 			if(url != null)
 				return client.getPage(url).getWebResponse().getStatusCode();
 		} catch (IOException ioe) {
