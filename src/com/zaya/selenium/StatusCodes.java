@@ -30,9 +30,21 @@ public class StatusCodes {
 		driver.get("http://www.lufthansa.com/online/portal/lh/ua/homepage");
 		String str = "http://www.lufthansa.com/asdfasdf";
 		String str1 = "http://ummyfoods.co.nr";
+		String str2="http://www.aua.com/ru/eng/default.htm";
 	
+		/*try {
+			System.out.println(new StatusCodes(driver).getResponseCodes(str2));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		//new StatusCodes(driver).getHTTPResponseCodes();
 		try {
-			System.out.println(new StatusCodes(driver).getResponseCodes(str1));
+			System.out.println(getResponseCodes(str2));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,8 +53,7 @@ public class StatusCodes {
 			e.printStackTrace();
 		}
 		
-		//new StatusCodes(driver).getHTTPResponseCodes();
-		//System.out.println(new StatusCodes(driver).getResponseCode(str));
+		//System.out.println(getResponseCode(str2));
 	}
 	//working fine
 	public static int getResponseCode(String url) {
